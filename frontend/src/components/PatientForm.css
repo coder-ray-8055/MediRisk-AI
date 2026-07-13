@@ -1,0 +1,192 @@
+/* ── Patient Form ───────────────────────────────────────────────────── */
+
+.patient-form-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-10) var(--space-6);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.form-header__icon {
+  width: 64px;
+  height: 64px;
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-5);
+}
+
+.form-header__title {
+  font-size: var(--font-2xl);
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: var(--space-2);
+}
+
+.form-header__subtitle {
+  font-size: var(--font-base);
+  color: var(--color-gray-500);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ── Form Grid ─────────────────────────────────────────────────────── */
+.patient-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-field__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-gray-700);
+}
+
+.form-field__emoji {
+  font-size: var(--font-base);
+}
+
+.form-field__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-field__input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  padding-right: 60px;
+  border: 1.5px solid var(--color-gray-300);
+  border-radius: var(--radius-md);
+  font-size: var(--font-base);
+  color: var(--color-gray-800);
+  background: var(--color-white);
+  transition: all var(--transition-fast);
+}
+
+.form-field__input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+}
+
+.form-field__input:disabled {
+  background: var(--color-gray-100);
+  cursor: not-allowed;
+}
+
+.form-field__input::placeholder {
+  color: var(--color-gray-400);
+}
+
+.form-field__unit {
+  position: absolute;
+  right: var(--space-3);
+  font-size: var(--font-xs);
+  color: var(--color-gray-400);
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.form-field__hint {
+  font-size: var(--font-xs);
+  color: var(--color-gray-400);
+  line-height: 1.3;
+}
+
+/* ── Actions ───────────────────────────────────────────────────────── */
+.patient-form__actions {
+  margin-top: var(--space-10);
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Shared Button Styles ──────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  border: none;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: white;
+  box-shadow: 0 4px 14px rgba(198, 40, 40, 0.3);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(198, 40, 40, 0.4);
+}
+
+.btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn--primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn--outline:hover:not(:disabled) {
+  background: var(--color-primary-subtle);
+}
+
+.btn--lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--font-base);
+}
+
+.btn--md {
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--font-sm);
+}
+
+.btn-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .patient-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-form-page {
+    padding: var(--space-6) var(--space-4);
+  }
+}
