@@ -159,17 +159,6 @@ The prediction model uses the following health metrics:
 
 ---
 
-## 📸 Screenshots
-
-Add screenshots inside the `screenshots` folder.
-
-Example:
-
-```
-screenshots/home.png
-screenshots/result.png
-```
-
 ---
 
 ## 🚀 Future Improvements
@@ -226,8 +215,6 @@ You are free to use, modify, and distribute this project under the terms of the 
 ## 👨‍💻 Author
 
 ### MD Rayyan Akhtar
-
-**B.Tech CSE (Data Science)**
 
 Passionate about:
 
