@@ -30,6 +30,16 @@ The project combines a **PyTorch Artificial Neural Network (ANN)** with a **Flas
 - 🔍 Real-time Prediction
 - 🖥️ Simple & Clean UI
 - 🚀 Fast Inference
+- ⚡ Quick report formation
+
+---
+
+## ✨ Report Formation
+
+After entering all your details a **report will be generated** which will have all the details clearly. The main purpose of the report is that you can download and print the report and show to your doctor, By reading all the details clearly your doctor can give you **proper medications**.
+
+The main purpose of showing that report is **sometime you fogets to give some details to doctors, sometimes your doctors forgets to ask for some basic details** so here comes our report which have all the basic details so that nothing can be missed and **proper medications can be made**.
+
 
 ---
 
@@ -172,6 +182,7 @@ The prediction model uses the following health metrics:
 - 🐳 Docker Support
 - ☁️ Cloud Deployment
 - 📱 Fully Responsive UI
+- 🩺 Doctor Mode
 
 ---
 
