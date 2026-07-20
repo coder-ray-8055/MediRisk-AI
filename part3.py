@@ -184,7 +184,7 @@ food = input("How often do you eat sugary foods or soft drinks: ")
 smoke = input("Do you smoke: ")
 alcohol = input("Do you drink alcohol: ")
 
-# Heart disease model 
+# Heart disease model =================
 
 # df = pd.read_csv("heart.csv")
 
@@ -444,3 +444,260 @@ alcohol = input("Do you drink alcohol: ")
 
 # print("\nThank you for answering the questions.")
 # print("Please discuss any concerning symptoms with a qualified healthcare professional.")
+
+# kidney model=======================
+
+# import pandas as pd
+# import numpy as np
+# import matplotlib.pyplot as plt
+# from sklearn.preprocessing import StandardScaler
+# from sklearn.model_selection import train_test_split
+# from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
+# from sklearn.preprocessing import LabelEncoder
+# import joblib
+# import torch
+# import torch.nn as nn
+# import torch.nn.functional as F
+
+# df = pd.read_csv("kidney.csv")
+
+# corrupted_numeric_cols = ['rc', 'wc', 'pcv', 'ba']
+# for col in corrupted_numeric_cols:
+#     if col in df.columns:
+#         df[col] = pd.to_numeric(df[col], errors='coerce')
+
+# ignore_cols = ["id", "classification"]
+# cat_features = []
+# cont_features = []
+
+# for col in df.columns:
+#     if col not in ignore_cols:
+#         if df[col].dtype == "O":
+#             cat_features.append(col)
+#         else:
+#             cont_features.append(col)
+
+# if 'ba' not in cat_features and 'ba' in df.columns:
+#     cat_features.append('ba')
+# if 'ba' in cont_features:
+#     cont_features.remove('ba')
+
+# for feature in cat_features:
+#     df[feature] = df[feature].fillna("missing")
+
+# for feature in cont_features:
+#     df[feature] = df[feature].fillna(df[feature].median())
+
+# scaler = StandardScaler()
+# df[cont_features] = scaler.fit_transform(df[cont_features])
+
+# label_encoders = {}
+# for col in cat_features:
+#     le = LabelEncoder()
+#     df[col] = le.fit_transform(df[col].astype(str))
+#     label_encoders[col] = le
+
+# if 'classification' in df.columns:
+#     df['classification'] = df['classification'].astype(str).str.replace(r'\t', '', regex=True).str.strip()
+    
+#     df['classification'] = df['classification'].map({'ckd': 1, 'notckd': 0})
+    
+#     df['classification'] = df['classification'].fillna(0).astype(int)
+
+# feature_order = cont_features + cat_features
+# X = df[feature_order].values
+# y = df["classification"].values
+
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# X_train_tensor = torch.FloatTensor(X_train)
+# X_test_tensor = torch.FloatTensor(X_test)
+
+# y_train_tensor = torch.LongTensor(y_train).squeeze()
+# y_test_tensor = torch.LongTensor(y_test).squeeze()
+# class kidneyANN(nn.Module):
+#     def __init__(self, input_feature=24, hidden1=32, hidden2=16, out_feature=2):
+#         super().__init__()
+#         self.fc1 = nn.Linear(input_feature, hidden1)
+#         self.fc2 = nn.Linear(hidden1, hidden2)
+#         self.out = nn.Linear(hidden2, out_feature)
+    
+#     def forward(self, x):
+#         x = F.relu(self.fc1(x))
+#         x = F.relu(self.fc2(x))
+#         return self.out(x)
+
+# torch.manual_seed(42)
+# model = kidneyANN(input_feature=len(feature_order))
+
+# loss_function = nn.CrossEntropyLoss()
+# optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+
+# epoch = 500
+# final_losses = []
+# for i in range(epoch):
+#     y_pred = model(X_train_tensor)
+#     loss = loss_function(y_pred, y_train_tensor)
+#     final_losses.append(loss.item())
+    
+#     if (i + 1) % 50 == 0:
+#         print(f"Epoch number: {i+1} and the loss : {loss.item():.4f}")
+        
+#     optimizer.zero_grad()
+#     loss.backward()
+#     optimizer.step()
+
+# torch.save(model.state_dict(), "kidney_state_dict.pt")
+# joblib.dump(scaler, "kidney_scaler.pkl")
+# joblib.dump(label_encoders, "kidney_label_encoders.pkl")
+
+# model = kidneyANN(input_feature=len(feature_order))
+# model.load_state_dict(torch.load("kidney_state_dict.pt"))
+# model.eval()
+
+# scaler = joblib.load("kidney_scaler.pkl")
+# label_encoders = joblib.load("kidney_label_encoders.pkl")
+
+# print("\n========== CHRONIC KIDNEY DISEASE PREDICTION ==========\n")
+# print("Please enter the patient's medical details carefully.\n")
+
+# user_cont = {}
+# user_cont['age'] = float(input("Enter Age (years): "))
+# user_cont['bp'] = float(input("Enter Resting Blood Pressure (mm Hg): "))
+# user_cont['sg'] = float(input("Enter Specific Gravity (e.g., 1.020): "))
+# user_cont['al'] = float(input("Enter Albumin level (0-5): "))
+# user_cont['su'] = float(input("Enter Sugar level (0-5): "))
+# user_cont['bgr'] = float(input("Enter Blood Glucose Random (mg/dL): "))
+# user_cont['bu'] = float(input("Enter Blood Urea (mg/dL): "))
+# user_cont['sc'] = float(input("Enter Serum Creatinine (mg/dL): "))
+# user_cont['sod'] = float(input("Enter Sodium (mEq/L): "))
+# user_cont['pot'] = float(input("Enter Potassium (mEq/L): "))
+# user_cont['hemo'] = float(input("Enter Hemoglobin (gms): "))
+# user_cont['pcv'] = float(input("Enter Packed Cell Volume (PCV %): "))
+# user_cont['wc'] = float(input("Enter White Blood Cell Count (cells/cumm): "))
+# user_cont['rc'] = float(input("Enter Red Blood Cell Count (millions/cmm): "))
+
+# user_cat = {}
+# print("\nCategorical Features (Type exactly as string: e.g., 'normal', 'abnormal', 'present', 'notpresent', 'yes', 'no', 'good', 'poor', or 'missing')")
+# user_cat['rbc'] = input("Red Blood Cells status: ").strip().lower()
+# user_cat['pc'] = input("Pus Cell status: ").strip().lower()
+# user_cat['pcc'] = input("Pus Cell Clumps status: ").strip().lower()
+# user_cat['ba'] = input("Bacteria status: ").strip().lower()
+# user_cat['htn'] = input("Hypertension? (yes/no): ").strip().lower()
+# user_cat['dm'] = input("Diabetes Mellitus? (yes/no): ").strip().lower()
+# user_cat['cad'] = input("Coronary Artery Disease? (yes/no): ").strip().lower()
+# user_cat['appet'] = input("Appetite status (good/poor): ").strip().lower()
+# user_cat['pe'] = input("Pedal Edema? (yes/no): ").strip().lower()
+# user_cat['ane'] = input("Anemia? (yes/no): ").strip().lower()
+
+# user_cont_df = pd.DataFrame([user_cont])[cont_features]
+# scaled_cont = scaler.transform(user_cont_df)[0]
+
+# encoded_cat = []
+# for col in cat_features:
+#     val = user_cat[col]
+#     le = label_encoders[col]
+#     if val not in le.classes_:
+#         val = 'missing'
+#     encoded_cat.append(le.transform([val])[0])
+
+# final_features = np.concatenate([scaled_cont, encoded_cat]).reshape(1, -1)
+# new_data = torch.FloatTensor(final_features)
+
+# with torch.no_grad():
+#     prediction = model(new_data)
+#     predicted_class = prediction.argmax(dim=1).item()
+#     probabilities = torch.softmax(prediction, dim=1)
+#     confidence = torch.max(probabilities).item() * 100
+
+# print(f"\nModel Prediction Confidence: {confidence:.2f}%")
+# print("\n========== PREDICTION RESULT ==========\n")
+
+# if predicted_class == 1:
+#     print("Chronic Kidney Disease Risk: HIGH")
+#     print("The patient is likely to have Chronic Kidney Disease (CKD).")
+#     print("Please consult a qualified Nephrologist immediately for detailed testing.")
+# else:
+#     print("Chronic Kidney Disease Risk: LOW")
+#     print("The patient is unlikely to have Chronic Kidney Disease.")
+#     print("Maintain balanced fluid intake, low sodium diet, and do regular check-ups.")
+
+# # === 4. FOLLOW-UP KIDNEY HEALTH ASSESSMENT ===
+# print("\n========== FOLLOW-UP KIDNEY HEALTH ASSESSMENT ==========\n")
+# print("Hello! I am your AI Kidney Health Assistant.")
+# print("I will ask you a few questions to better understand your renal/kidney health.")
+# print("These questions are for awareness only and are NOT a medical diagnosis.\n")
+
+# # --- 1. Symptom Tracking Inputs ---
+# print("--- 1. General Symptoms ---")
+# reason = input("What primary health concern brings you here today? ").strip()
+# urine_frequency = input("Have you noticed any changes in urination frequency (too frequent or less)? (yes/no): ").strip().lower()
+# urine_color = input("Is your urine foamy, bubbly, or darker/bloody in color? (yes/no): ").strip().lower()
+# nausea = input("Do you experience frequent nausea, vomiting, or loss of appetite? (yes/no): ").strip().lower()
+# back_pain = input("Do you feel flank pain (pain in your upper back/sides where kidneys are located)? (yes/no): ").strip().lower()
+# itchy_skin = input("Do you experience unusually dry and itchy skin? (yes/no): ").strip().lower()
+# puffiness = input("Do you notice puffiness around your eyes or face, especially in the morning? (yes/no): ").strip().lower()
+
+# # --- 2. Risk Factors & Lifestyle ---
+# print("\n--- 2. Risk Factors & Lifestyle ---")
+# family_kidney = input("Has anyone in your close family ever suffered from kidney failure or required dialysis? (yes/no): ").strip().lower()
+# otc_meds = input("Do you frequently take over-the-counter painkillers (like NSAIDs/Ibuprofen)? (yes/no): ").strip().lower()
+# water_intake = float(input("How many liters of water do you roughly drink per day? (e.g., 2.5): "))
+# salt_diet = input("Do you consume a diet high in processed foods or extra salt? (yes/no): ").strip().lower()
+
+# # --- 3. Custom Dynamic Assessment Report ---
+# print("\n==========================================================")
+# print("             LIFESTYLE & SYMPTOMS SUMMARY                 ")
+# print("==========================================================\n")
+# print(f"Primary Concern: {reason}")
+
+# red_flags = 0
+# recommendations = []
+
+# # Check for symptoms red flags
+# if urine_frequency == 'yes' or urine_color == 'yes':
+#     red_flags += 1
+#     recommendations.append("- Urination changes (color/foam/frequency) require a routine Urinalysis (urine test).")
+
+# if puffiness == 'yes':
+#     red_flags += 1
+#     recommendations.append("- Facial/eye puffiness can indicate fluid retention due to protein leaking in urine.")
+
+# if back_pain == 'yes':
+#     recommendations.append("- Flank pain could be related to kidney stones or infections; monitor it closely.")
+
+# if nausea == 'yes' or itchy_skin == 'yes':
+#     red_flags += 1
+#     recommendations.append("- Severe itching and persistent nausea can sometimes be linked to buildup of toxins (Uremia).")
+
+# # Check for lifestyle risks
+# if family_kidney == 'yes':
+#     recommendations.append("- Since you have a family history of kidney issues, screening via annual KFT (Kidney Function Test) is vital.")
+
+# if otc_meds == 'yes':
+#     recommendations.append("- Frequent use of NSAIDs/painkillers can stress the kidneys. Try to limit them after consulting a doctor.")
+
+# if water_intake < 2.0:
+#     recommendations.append(f"- Your fluid intake ({water_intake}L) is low. Try to drink at least 2.5 to 3 liters of water daily.")
+# elif water_intake >= 2.0:
+#     print("- Good job keeping up with hydration!")
+
+# if salt_diet == 'yes':
+#     recommendations.append("- High salt intake strains kidney filtration. Reduce processed food and table salt.")
+
+# # Final Assessment Output based on score
+# print(f"\nIdentified Kidney Symptom Red Flags: {red_flags}")
+
+# print("\n--- Actionable Advice ---")
+# if len(recommendations) == 0:
+#     print("Everything looks great! Maintain a healthy lifestyle, stay hydrated, and keep doing regular check-ups.")
+# else:
+#     for rec in recommendations:
+#         print(rec)
+
+# print("\n----------------------------------------------------------")
+# print("⚠️ IMPORTANT MEDICAL DISCLAIMER:")
+# print("Kidney issues are often silent and don't show obvious early symptoms.")
+# print("This AI report cannot replace a doctor. Please discuss your actual blood/urine reports")
+# print("(like Serum Creatinine, Blood Urea, and eGFR) with a qualified healthcare professional.")
+# print("==========================================================")
