@@ -3,3 +3,6 @@ flask-cors
 torch
 reportlab
 numpy
+pandas
+scikit-learn
+joblib

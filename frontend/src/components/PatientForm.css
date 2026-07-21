@@ -23,6 +23,10 @@
   margin: 0 auto var(--space-5);
 }
 
+.form-header__emoji-main {
+  font-size: 32px;
+}
+
 .form-header__title {
   font-size: var(--font-2xl);
   font-weight: 700;
@@ -35,6 +39,38 @@
   color: var(--color-gray-500);
   max-width: 500px;
   margin: 0 auto;
+}
+
+/* ── Form Tabs ──────────────────────────────────────────────────────── */
+.form-tabs {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+  border-bottom: 2px solid var(--color-gray-200);
+  padding-bottom: 2px;
+}
+
+.form-tab-btn {
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--color-gray-500);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.form-tab-btn:hover {
+  color: var(--color-gray-900);
+}
+
+.form-tab-btn.active {
+  color: var(--color-primary);
+  font-weight: 755;
 }
 
 /* ── Form Grid ─────────────────────────────────────────────────────── */
@@ -67,26 +103,46 @@
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
-.form-field__input {
+.form-field__input,
+.form-field__select {
   width: 100%;
   padding: var(--space-3) var(--space-4);
-  padding-right: 60px;
   border: 1.5px solid var(--color-gray-300);
   border-radius: var(--radius-md);
   font-size: var(--font-base);
   color: var(--color-gray-800);
   background: var(--color-white);
   transition: all var(--transition-fast);
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
 }
 
-.form-field__input:focus {
+.form-field__input {
+  padding-right: 65px;
+}
+
+.form-field__select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.form-field__input:focus,
+.form-field__select:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+  box-shadow: 0 0 0 3px rgba(15, 111, 255, 0.1);
 }
 
-.form-field__input:disabled {
+.form-field__input:disabled,
+.form-field__select:disabled {
   background: var(--color-gray-100);
   cursor: not-allowed;
 }
@@ -97,7 +153,7 @@
 
 .form-field__unit {
   position: absolute;
-  right: var(--space-3);
+  right: var(--space-4);
   font-size: var(--font-xs);
   color: var(--color-gray-400);
   font-weight: 500;
@@ -117,28 +173,36 @@
   justify-content: center;
 }
 
+.form-actions-group {
+  display: flex;
+  gap: var(--space-4);
+  width: 100%;
+  justify-content: center;
+}
+
 /* ── Shared Button Styles ──────────────────────────────────────────── */
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-3);
   font-weight: 600;
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
   cursor: pointer;
   border: none;
+  outline: none;
 }
 
 .btn--primary {
   background: var(--color-primary);
   color: white;
-  box-shadow: 0 4px 14px rgba(198, 40, 40, 0.3);
+  box-shadow: 0 4px 14px rgba(15, 111, 255, 0.25);
 }
 
 .btn--primary:hover:not(:disabled) {
-  background: var(--color-primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(198, 40, 40, 0.4);
+  filter: brightness(1.05);
 }
 
 .btn--primary:active:not(:disabled) {
@@ -153,12 +217,13 @@
 
 .btn--outline {
   background: transparent;
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  color: var(--color-gray-700);
+  border: 1.5px solid var(--color-gray-300);
 }
 
 .btn--outline:hover:not(:disabled) {
-  background: var(--color-primary-subtle);
+  background: var(--color-gray-50);
+  border-color: var(--color-gray-400);
 }
 
 .btn--lg {
@@ -180,6 +245,10 @@
   animation: spin 0.7s linear infinite;
 }
 
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ── Responsive ────────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .patient-form__grid {
@@ -188,5 +257,13 @@
 
   .patient-form-page {
     padding: var(--space-6) var(--space-4);
+  }
+
+  .form-actions-group {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions-group .btn {
+    width: 100%;
   }
 }
