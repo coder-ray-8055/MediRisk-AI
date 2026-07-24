@@ -202,12 +202,6 @@ You are free to use, modify, and distribute this software in accordance with the
 
 ### MD Rayyan Akhtar
 
-Passionate about:
-- 🤖 Artificial Intelligence & Healthcare Tech
-- 📊 Machine Learning & Deep Learning
-- 💻 Full Stack Development
-- 📈 Data Science
-
 ---
 
 ## ⭐ Support
