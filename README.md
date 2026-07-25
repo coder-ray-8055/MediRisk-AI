@@ -200,7 +200,7 @@ You are free to use, modify, and distribute this software in accordance with the
 
 ## 👨‍💻 Author
 
-### MD Rayyan Akhtar
+### MD Rayyan Akhtar (Full stack developer)
 
 ---
 
