@@ -1,12 +1,12 @@
-# 🩺 AI Diabetes Prediction System
+# 🩺 MediRisk AI (Formerly diabetePred.ai)
 
-> A modern Machine Learning powered web application that predicts the likelihood of diabetes using patient health parameters.
+> An advanced, multi-disease AI Health Risk Assessment & Clinical Report Generation System. Powered by Deep Learning & Machine Learning.
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python">
   <img src="https://img.shields.io/badge/PyTorch-Neural%20Network-red?style=for-the-badge&logo=pytorch">
   <img src="https://img.shields.io/badge/Flask-Backend-black?style=for-the-badge&logo=flask">
-  <img src="https://img.shields.io/badge/HTML-CSS-JS-orange?style=for-the-badge&logo=html5">
+  <img src="https://img.shields.io/badge/HTML5-CSS3-JS-orange?style=for-the-badge&logo=html5">
   <img src="https://img.shields.io/badge/License-GPLv3-blue?style=for-the-badge">
 </p>
 
@@ -14,54 +14,54 @@
 
 ## 📌 Overview
 
-The **AI Diabetes Prediction System** is a Machine Learning web application that predicts whether a person is likely to have diabetes based on several medical parameters.
+**MediRisk AI** is an end-to-end AI-powered health risk prediction and clinical assistant application. Upgraded from its original version focused solely on diabetes prediction, **MediRisk AI** now assesses risks for **multiple chronic diseases** (including Diabetes, Heart Disease, Kidney Disease, Liver Disease, and Hypertension/Stroke risk).
 
-The project combines a **PyTorch Artificial Neural Network (ANN)** with a **Flask backend** and a responsive frontend to provide instant predictions through a clean and user-friendly interface.
+It analyzes patient health parameters and bio-markers using custom **PyTorch Artificial Neural Networks (ANN)** and ensemble machine learning models. Beyond instant risk calculation, the system generates comprehensive, downloadable **Doctor-Ready Clinical Health Reports** designed to bridge the communication gap between patients and healthcare providers during consultations.
 
 ---
 
 ## ✨ Features
 
-- 🤖 AI-powered Diabetes Prediction
-- 🧠 Artificial Neural Network (PyTorch)
-- ⚡ Flask REST API Backend
-- 🎨 Responsive Frontend
-- 📊 Probability/Confidence Score
-- 🔍 Real-time Prediction
-- 🖥️ Simple & Clean UI
-- 🚀 Fast Inference
-- ⚡ Quick report formation
+- 🤖 **Multi-Disease AI Risk Prediction:** Evaluates risk profiles across multiple health conditions (Diabetes, Heart Disease, Liver & Kidney metrics).
+- 🧠 **PyTorch Deep Neural Networks:** High-accuracy neural models trained on clinical bio-markers.
+- ⚡ **Flask RESTful API:** Lightweight, fast, and secure API backend handling data validation and model inference.
+- 🎨 **Responsive Modern UI:** Seamless user experience across mobile, tablet, and desktop interfaces.
+- 📊 **Confidence & Risk Scoring:** Real-time percentage risk score with stratification (Low, Moderate, High Risk).
+- 📑 **Comprehensive Doctor-Ready Report:** Instant generation of standardized PDF reports to print or present during medical appointments.
+- 🔍 **Real-Time Health Risk Analytics:** Instant execution with clear parameter flags (out-of-range indicators).
+- 🛡️ **GPL-3.0 Open Source:** Fully open for community contributions and clinical technology research.
 
 ---
 
-## ✨ Report Formation
+## 🩺 Clinical Report Generation & Doctor Assistance
 
-After entering all your details a **report will be generated** which will have all the details clearly. The main purpose of the report is that you can download and print the report and show to your doctor, By reading all the details clearly your doctor can give you **proper medications**.
+A key feature of **MediRisk AI** is its automated **Clinical Health Report System**.
 
-The main purpose of showing that report is **sometime you fogets to give some details to doctors, sometimes your doctors forgets to ask for some basic details** so here comes our report which have all the basic details so that nothing can be missed and **proper medications can be made**.
+### Why is this report vital?
+- **Prevents Memory Gaps:** During short doctor visits, patients often forget to mention critical baseline metrics, family history, or recent bio-marker changes.
+- **Saves Doctor's Time:** Doctors frequently don't have enough consultation time to ask every detailed preliminary baseline question.
+- **Enables Accurate Prescriptions & Diagnosis:** Having a structured summary of vital metrics allows healthcare providers to quickly evaluate risk factors and prescribe appropriate tests or medications without missing crucial context.
 
+Patients can effortlessly **download and print** their formatted report to share directly with their physician.
 
 ---
 
 ## 🛠 Tech Stack
 
 ### Frontend
-
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript (ES6+)
 
 ### Backend
+- Flask (Python)
+- REST APIs
 
-- Flask
-- Python
-
-### Machine Learning
-
-- PyTorch
-- NumPy
-- Pandas
+### Machine Learning & Data Science
+- PyTorch (Artificial Neural Networks)
 - Scikit-learn
+- Pandas
+- NumPy
 
 ---
 
@@ -70,9 +70,8 @@ The main purpose of showing that report is **sometime you fogets to give some de
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/Diabetes-Prediction.git
-
-cd Diabetes-Prediction
+git clone https://github.com/yourusername/MediRisk-AI.git
+cd MediRisk-AI
 ```
 
 ---
@@ -80,18 +79,14 @@ cd Diabetes-Prediction
 ### 2️⃣ Create a Virtual Environment
 
 #### Windows
-
 ```bash
 python -m venv venv
-
 venv\Scripts\activate
 ```
 
 #### Linux / macOS
-
 ```bash
 python3 -m venv venv
-
 source venv/bin/activate
 ```
 
@@ -111,136 +106,107 @@ pip install -r requirements.txt
 
 ```bash
 cd backend
-
 python app.py
 ```
 
 The backend server will start at:
-
 ```text
 http://127.0.0.1:5000
 ```
 
 ---
 
-### 2️⃣ Start the Frontend
+### Start the Frontend
 
 Open a new terminal and run:
 
 ```bash
 cd frontend
-
 npm install
-
 npm run dev
 ```
 
-The frontend will be available at:
-
-```
+The frontend application will be live at:
+```text
 http://localhost:5173
 ```
----
-
-## 📊 Input Parameters
-
-The prediction model uses the following health metrics:
-
-- Pregnancies
-- Glucose
-- Blood Pressure
-- Skin Thickness
-- Insulin
-- BMI
-- Diabetes Pedigree Function
-- Age
 
 ---
 
-## 🧠 Model Information
+## 📊 Input Parameters & Assessed Metrics
 
-- **Model:** Artificial Neural Network (ANN)
-- **Framework:** PyTorch
-- **Activation Function:** ReLU
-- **Output Layer:** Sigmoid
-- **Loss Function:** Binary Cross Entropy
-- **Optimizer:** Adam
-- **Prediction:** Binary Classification (Diabetic / Non-Diabetic)
+Depending on the chosen risk module, the system processes a variety of patient parameters:
 
----
+- **Diabetes Risk:** Glucose, BMI, Blood Pressure, Insulin, Skin Thickness, Diabetes Pedigree Function, Age, Pregnancies.
+- **Cardiovascular / Heart Risk:** Chest Pain Type, Resting Blood Pressure, Serum Cholesterol, Fasting Blood Sugar, Max Heart Rate, Exercise Angina, ST Depression.
+- **Renal & Hepatic Indicators:** Serum Creatinine, Urea, SGOT/SGPT levels, Bilirubin, Albumin.
+- **Lifestyle & Vitals:** Age, Gender, BMI, Physical Activity, Smoking Status.
 
 ---
 
-## 🚀 Future Improvements
+## 🧠 Model Architecture & Methodology
 
-- 🔐 User Authentication
-- 🩺 Multiple Disease Prediction
-- 📈 Prediction History
-- 🤖 AI Health Assistant
-- 📊 Explainable AI (XAI)
-- 🌙 Dark Mode
-- 🐳 Docker Support
-- ☁️ Cloud Deployment
-- 📱 Fully Responsive UI
-- 🩺 Doctor Mode
+- **Framework:** PyTorch & Scikit-learn
+- **Architecture:** Multi-Layer Perceptron (MLP) / Artificial Neural Networks (ANN) with dense linear layers, Dropout regularization, and Batch Normalization.
+- **Activation Functions:** ReLU (Hidden Layers), Sigmoid / Softmax (Output Layer).
+- **Optimization & Loss:** Adam Optimizer with Binary / Categorical Cross-Entropy Loss.
+- **Inference Pipeline:** Feature scaling via StandardScaler, real-time prediction tensor transformation, and probability mapping.
+
+---
+
+## 🚀 Future Roadmap
+
+- 🔐 **User Authentication & Dashboard:** Secure patient profile management and report history.
+- 📈 **Longitudinal Health Tracking:** Visual trend charts over time for recurring metrics.
+- 🤖 **Interactive LLM Health Assistant:** Natural language explanation of lab reports and medical terms.
+- 📊 **Explainable AI (XAI):** SHAP / LIME integration to show which features contributed most to risk scores.
+- 🌙 **Dark Mode Support**
+- 🐳 **Docker Containerization**
+- ☁️ **Cloud Deployment (AWS / GCP / Vercel)**
+- 🩺 **Doctor Mode:** Specialized interface for healthcare professionals to review multiple patient logs.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome!
+Contributions are warmly welcomed! 
 
-If you'd like to improve this project:
+If you'd like to improve **MediRisk AI**:
 
 1. Fork the repository
-2. Create a new branch
-
-```bash
-git checkout -b feature-name
-```
-
-3. Commit your changes
-
-```bash
-git commit -m "Added new feature"
-```
-
-4. Push your branch
-
-```bash
-git push origin feature-name
-```
-
-5. Open a Pull Request
+2. Create a feature branch:
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add AmazingFeature"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. Open a **Pull Request**
 
 ---
 
 ## 📜 License
 
-This project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
+This project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**. 
 
-You are free to use, modify, and distribute this project under the terms of the GPL-3.0 License.
+You are free to use, modify, and distribute this software in accordance with the GPL-3.0 terms.
 
 ---
 
 ## 👨‍💻 Author
 
-### MD Rayyan Akhtar
-
-Passionate about:
-
-- 🤖 Artificial Intelligence
-- 📊 Machine Learning
-- 💻 Full Stack Development
-- 📈 Data Science
+### MD Rayyan Akhtar (Full stack developer)
 
 ---
 
 ## ⭐ Support
 
-If you found this project helpful, please consider giving it a ⭐ **Star** on GitHub.
-
-It motivates me to build more AI-powered projects.
+If you find this project useful, please consider giving it a ⭐ **Star** on GitHub! Your support drives further development.
 
 ---
 
